@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author krogulecp
@@ -22,6 +23,19 @@ class Program {
     }
 
     void run() throws IOException {
-        Operation operation = userInterface.provideOperation();
+        boolean isContinued = true;
+        while (isContinued){
+            //Wszystkie interakcje z użytkownikiem
+            Logger.getLogger().log("Rozpoczęcie działania programu. Dostępne operacje: " + operationProcessors.stream()
+                    .map(operationProcessor -> operationProcessor.getOperation().name())
+                    .collect(Collectors.joining(",")));
+            Operation operation = userInterface.provideOperation();
+            int arg1 = userInterface.provideArg();
+            int arg2 = userInterface.provideArg();
+            Calculator calculator = new Calculator(arg1, arg2, operationProcessors, operation);
+            double result = calculator.calculate();
+            userInterface.printResult(result);
+            isContinued = userInterface.shouldContinue();
+        }
     }
 }

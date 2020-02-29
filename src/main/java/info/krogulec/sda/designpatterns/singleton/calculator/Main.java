@@ -8,6 +8,6 @@ import java.util.Set;
  */
 class Main {
     public static void main(String[] args) throws IOException {
-        new Program(Set.of(new AdditionProcessor())).run();
+        new Program(Set.of(new AdditionProcessor(), new SubtractProcessor())).run();
     }
 }

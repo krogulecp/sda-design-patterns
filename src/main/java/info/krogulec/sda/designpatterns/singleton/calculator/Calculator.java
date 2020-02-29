@@ -20,6 +20,7 @@ class Calculator {
     }
 
     double calculate(){
+        Logger.getLogger().log("Użytkownik wykonuje kalkulacje. Podane argumenty: " + arg1 + ", " + arg2 + " Operacja: " + operation);
         OperationProcessor operationProcessor = provideProcessor();
         return operationProcessor.process(arg1,arg2);
     }
