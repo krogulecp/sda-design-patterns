@@ -1,5 +1,7 @@
 package info.krogulec.sda.designpatterns.factorymethod;
 
+import java.util.stream.IntStream;
+
 /**
  * @author krogulecp
  */
@@ -12,6 +14,7 @@ class World {
     }
 
     void createWorld(){
-        //TODO
+        IntStream.iterate(0, i -> i + 1)
+                .forEach(i -> System.out.println(enemyFactory.createEnemy()));
     }
 }
